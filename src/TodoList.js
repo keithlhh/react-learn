@@ -10,7 +10,11 @@ class TodoList extends Component {
 			list: []
 		}
 	}
+	// componentDidUpdate() {
+	// 	console.log('componentdidupdate')
+	// }
 	render() {
+		console.log('parent render')
 		return (
 			<Fragment>
 				<input type="text" onChange={this.handleInputChange.bind(this)} value={this.state.inputValue} />
@@ -24,6 +28,7 @@ class TodoList extends Component {
 									key={index}
 									handleDelete={this.handleDelete.bind(this)}
 									index={index}
+									title="hello"
 								/>
 							)
 						})
