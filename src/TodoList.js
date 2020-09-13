@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import TodoItem from './TodoItem'
+import { Button, Input } from 'antd';
+import 'antd/dist/antd.css'
 var _ = require('lodash');
+const  axios = require('axios')
 
 class TodoList extends Component {
 	constructor(props) {
@@ -9,33 +12,34 @@ class TodoList extends Component {
 			inputValue: '',
 			list: []
 		}
+		this.handleDelete = this.handleDelete.bind(this)
 	}
-	// componentDidUpdate() {
-	// 	console.log('componentdidupdate')
-	// }
 	render() {
-		console.log('parent render')
 		return (
 			<Fragment>
-				<input type="text" onChange={this.handleInputChange.bind(this)} value={this.state.inputValue} />
-				<button onClick={this.handleClickSubmit.bind(this)}>提交</button>
+				<Input type="text" onChange={this.handleInputChange.bind(this)} value={this.state.inputValue} />
+				<Button type="primary" onClick={this.handleClickSubmit.bind(this)}>提交</Button>
 				<ul>
 					{
 						this.state.list.map((item, index) => {
 							return (
 								<TodoItem
-									content={item}
-									key={index}
-									handleDelete={this.handleDelete.bind(this)}
-									index={index}
-									title="hello"
+								content={item}
+								key={index}
+								handleDelete={this.handleDelete}
+								index={index}
 								/>
-							)
-						})
-					}
+								)
+							})
+						}
 				</ul>
 			</Fragment>
 		)
+	}
+	componentDidMount() {
+		axios.get('http://localhost:2000/list.json').then( (res) => {
+			console.log(res)
+		})
 	}
 	handleInputChange(e) {
 		e.persist();

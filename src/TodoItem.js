@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Button, DatePicker } from 'antd';
 
 class TodoItem extends Component {
 	constructor(props) {
@@ -25,10 +26,6 @@ class TodoItem extends Component {
 	componentWillUnmount() {
 		console.log('componentwillunmount')
 	}
-	// getSnapshotBeforeUpdate() {
-	// 	console.log('getSnapshotBeforeUpdate')
-	// 	return 'hello world'
-	// }
 	componentDidUpdate(a,b,c) {
 		console.log('hello	',a,b,c)
 	}
@@ -37,7 +34,7 @@ class TodoItem extends Component {
 		return (
 			<Fragment>
 				<div onClick={this.handleDeleteItem}>
-					{this.props.title}{this.props.content}
+					{this.props.title}{this.props.content}<Button type="primary">press me</Button>
 				</div>
 			</Fragment>
 		)
