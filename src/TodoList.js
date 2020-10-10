@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import TodoItem from './TodoItem'
-import { Button, Input } from 'antd';
+import { Button, Input} from 'antd';
 import 'antd/dist/antd.css'
+import store from './store'
 var _ = require('lodash');
 const  axios = require('axios')
 
@@ -11,15 +12,23 @@ class TodoList extends Component {
 		super(props);
 		this.state = {
 			inputValue: '',
-			list: []
+			list: store.getState().list
 		}
 		this.handleDelete = this.handleDelete.bind(this)
 	}
 	render() {
 		return (
 			<Fragment>
-				<Input type="text" onChange={this.handleInputChange.bind(this)} value={this.state.inputValue} />
+				<Input style={{width: '50%'}} type="text" onChange={this.handleInputChange.bind(this)} value={this.state.inputValue} />
 				<Button type="primary" onClick={this.handleClickSubmit.bind(this)}>提交</Button>
+				{/* <List
+				bordered
+				style={{width: '40%', marginTop: '10px'}}
+				dataSource={this.state.list}
+				renderItem={item => (
+					<List.Item>{item}</List.Item>
+				)}
+				/> */}
 				<ul>
 					{
 						this.state.list.map((item, index) => {
@@ -37,11 +46,11 @@ class TodoList extends Component {
 			</Fragment>
 		)
 	}
-	componentDidMount() {
-		axios.get('http://localhost:2000/list.json').then( (res) => {
-			console.log(res)
-		})
-	}
+	// componentDidMount() {
+	// 	axios.get('http://localhost:2000/list.json').then( (res) => {
+	// 		console.log(res)
+	// 	})
+	// }
 	handleInputChange(e) {
 		e.persist();
 		let inputValue = _.cloneDeep(this.state.inputValue)

@@ -1,40 +1,16 @@
 import React, { Component, Fragment } from 'react'
-import { Button, DatePicker } from 'antd';
 
 class TodoItem extends Component {
 	constructor(props) {
 		super(props)
 		this.handleDeleteItem = this.handleDeleteItem.bind(this)
 	}
-
-	shouldComponentUpdate() {
-		return false
-	}
-	UNSAFE_componentWillMount() {
-		console.log('UNSAFE_componentWillMount')
-	}
-	componentDidMount() {
-		console.log('componentDidMount')
-	}
-	UNSAFE_componentWillUpdate() {
-		console.log('Unfase_componentwillupdate')
-	}
-
-	UNSAFE_componentWillReceiveProps() {
-		console.log("UNSAFE_componentwillreceiveprops")
-	}
-	componentWillUnmount() {
-		console.log('componentwillunmount')
-	}
-	componentDidUpdate(a,b,c) {
-		console.log('hello	',a,b,c)
-	}
 	render() {
 		console.log( 'child render')
 		return (
 			<Fragment>
 				<div onClick={this.handleDeleteItem}>
-					{this.props.title}{this.props.content}<Button type="primary">press me</Button>
+					{this.props.title}{this.props.content}
 				</div>
 			</Fragment>
 		)
